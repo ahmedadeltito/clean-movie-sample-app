@@ -1,6 +1,6 @@
-package com.ahmedadel.domain.model;
+package com.ahmedadel.presentation.model;
 
-public class PersonEntity {
+public class PersonUIModel {
 
     private int id;
 

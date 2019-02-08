@@ -3,18 +3,20 @@ package com.ahmedadel.domain.usecase.movie;
 import com.ahmedadel.domain.model.MovieEntity;
 import com.ahmedadel.domain.repository.MovieRepository;
 
+import java.util.List;
+
 import io.reactivex.Single;
 
-public class GetMovieUseCase {
+public class GetMoviesUseCase {
 
     private MovieRepository movieRepository;
 
-    public GetMovieUseCase(MovieRepository movieRepository) {
+    public GetMoviesUseCase(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 
-    public Single<MovieEntity> getMovie(Integer movieId) {
-        return movieRepository.getMovie(movieId);
+    public Single<List<MovieEntity>> getMovies(Integer pageNumber) {
+        return movieRepository.getMovies(pageNumber);
     }
 
 }

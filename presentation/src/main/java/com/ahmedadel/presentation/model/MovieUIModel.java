@@ -1,16 +1,16 @@
-package com.ahmedadel.domain.model;
+package com.ahmedadel.presentation.model;
 
-public class MovieEntity {
+public class MovieUIModel {
 
     private int id;
+
+    private String title;
 
     private String overview;
 
     private String originalLanguage;
 
     private String originalTitle;
-
-    private String title;
 
     private String posterPath;
 
@@ -20,14 +20,20 @@ public class MovieEntity {
 
     private boolean adult;
 
-    private int voteCount;
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getOverview() {
@@ -52,14 +58,6 @@ public class MovieEntity {
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getPosterPath() {
@@ -93,13 +91,4 @@ public class MovieEntity {
     public void setAdult(boolean adult) {
         this.adult = adult;
     }
-
-    public int getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
-    }
-
 }

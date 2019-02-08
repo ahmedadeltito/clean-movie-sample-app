@@ -17,14 +17,8 @@ public class TVRemote {
 	@SerializedName("original_language")
 	private String originalLanguage;
 
-	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
-
 	@SerializedName("poster_path")
 	private String posterPath;
-
-	@SerializedName("origin_country")
-	private List<String> originCountry;
 
 	@SerializedName("backdrop_path")
 	private String backdropPath;
@@ -68,28 +62,12 @@ public class TVRemote {
 		return originalLanguage;
 	}
 
-	public void setGenreIds(List<Integer> genreIds){
-		this.genreIds = genreIds;
-	}
-
-	public List<Integer> getGenreIds(){
-		return genreIds;
-	}
-
 	public void setPosterPath(String posterPath){
 		this.posterPath = posterPath;
 	}
 
 	public String getPosterPath(){
 		return posterPath;
-	}
-
-	public void setOriginCountry(List<String> originCountry){
-		this.originCountry = originCountry;
-	}
-
-	public List<String> getOriginCountry(){
-		return originCountry;
 	}
 
 	public void setBackdropPath(String backdropPath){
@@ -155,10 +133,8 @@ public class TVRemote {
 			"TVRemote{" +
 			"first_air_date = '" + firstAirDate + '\'' + 
 			",overview = '" + overview + '\'' + 
-			",original_language = '" + originalLanguage + '\'' + 
-			",genre_ids = '" + genreIds + '\'' + 
-			",poster_path = '" + posterPath + '\'' + 
-			",origin_country = '" + originCountry + '\'' + 
+			",original_language = '" + originalLanguage + '\'' +
+			",poster_path = '" + posterPath + '\'' +
 			",backdrop_path = '" + backdropPath + '\'' + 
 			",popularity = '" + popularity + '\'' + 
 			",vote_average = '" + voteAverage + '\'' + 

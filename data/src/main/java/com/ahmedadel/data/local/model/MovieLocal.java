@@ -1,10 +1,8 @@
 package com.ahmedadel.data.local.model;
 
-import java.util.List;
-
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "movie")
 public class MovieLocal {
@@ -26,9 +24,6 @@ public class MovieLocal {
 
     @ColumnInfo(name ="title")
     public String title;
-
-    @ColumnInfo(name ="genre_ids")
-    public List<Integer> genreIds;
 
     @ColumnInfo(name ="poster_path")
     public String posterPath;

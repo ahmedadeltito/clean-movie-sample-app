@@ -14,7 +14,6 @@ public class MovieMapperImpl implements MovieMapper {
         MovieEntity movieEntity = new MovieEntity();
         movieEntity.setId(movieLocal.id);
         movieEntity.setAdult(movieLocal.adult);
-        movieEntity.setGenreIds(movieLocal.genreIds);
         movieEntity.setOriginalLanguage(movieLocal.originalLanguage);
         movieEntity.setOriginalTitle(movieLocal.originalTitle);
         movieEntity.setOverview(movieLocal.overview);
@@ -31,7 +30,6 @@ public class MovieMapperImpl implements MovieMapper {
         MovieEntity movieEntity = new MovieEntity();
         movieEntity.setId(movieRemote.getId());
         movieEntity.setAdult(movieRemote.isAdult());
-        movieEntity.setGenreIds(movieRemote.getGenreIds());
         movieEntity.setOriginalLanguage(movieRemote.getOriginalLanguage());
         movieEntity.setOriginalTitle(movieRemote.getOriginalTitle());
         movieEntity.setOverview(movieRemote.getOverview());
@@ -66,7 +64,6 @@ public class MovieMapperImpl implements MovieMapper {
         MovieLocal movieLocal = new MovieLocal();
         movieLocal.id = movieEntity.getId();
         movieLocal.adult = movieEntity.isAdult();
-        movieLocal.genreIds = movieEntity.getGenreIds();
         movieLocal.originalLanguage = movieEntity.getOriginalLanguage();
         movieLocal.originalTitle = movieEntity.getOriginalTitle();
         movieLocal.overview = movieEntity.getOverview();

@@ -1,20 +1,18 @@
-package com.ahmedadel.domain.model;
+package com.ahmedadel.presentation.model;
 
-public class TVEntity {
+public class TVUIModel {
 
     private int id;
 
+    private String name;
+
     private String overview;
+
+    private String originalName;
 
     private String originalLanguage;
 
     private String posterPath;
-
-    private double voteAverage;
-
-    private String originalName;
-
-    private String name;
 
     private int voteCount;
 
@@ -26,12 +24,28 @@ public class TVEntity {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getOverview() {
         return overview;
     }
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
     }
 
     public String getOriginalLanguage() {
@@ -48,30 +62,6 @@ public class TVEntity {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
-    }
-
-    public double getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(double voteAverage) {
-        this.voteAverage = voteAverage;
-    }
-
-    public String getOriginalName() {
-        return originalName;
-    }
-
-    public void setOriginalName(String originalName) {
-        this.originalName = originalName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getVoteCount() {

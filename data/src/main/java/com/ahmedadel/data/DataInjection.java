@@ -15,7 +15,7 @@ import com.ahmedadel.domain.repository.MovieRepository;
 import com.ahmedadel.domain.repository.PersonRepository;
 import com.ahmedadel.domain.repository.TVRepository;
 
-public class Injection {
+public class DataInjection {
 
     private static MovieDao getMovieDao(Context context) {
         return DatabaseManager.getInstance(context).movieDao();
@@ -33,15 +33,15 @@ public class Injection {
         return APIClient.getMovieAppAPI();
     }
 
-    public static MovieRepository getMovieRepository(Context context) {
+    public static MovieRepository provideMovieRepository(Context context) {
         return new MovieRepositoryImpl(getMovieDao(context), getMovieAppAPI());
     }
 
-    public static PersonRepository getPersonRepository(Context context) {
+    public static PersonRepository providePersonRepository(Context context) {
         return new PersonRepositoryImpl(getPersonDao(context), getMovieAppAPI());
     }
 
-    public static TVRepository getTVRepository(Context context) {
+    public static TVRepository provideTVRepository(Context context) {
         return new TVRepositoryImpl(getTVDao(context), getMovieAppAPI());
     }
 }

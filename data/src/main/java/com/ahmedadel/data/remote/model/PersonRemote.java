@@ -8,9 +8,6 @@ public class PersonRemote {
 	@SerializedName("id")
 	private int id;
 
-	@SerializedName("known_for")
-	private List<MovieRemote> knownFor;
-
 	@SerializedName("popularity")
 	private double popularity;
 
@@ -22,14 +19,6 @@ public class PersonRemote {
 
 	@SerializedName("adult")
 	private boolean adult;
-
-	public void setKnownFor(List<MovieRemote> knownFor){
-		this.knownFor = knownFor;
-	}
-
-	public List<MovieRemote> getKnownFor(){
-		return knownFor;
-	}
 
 	public void setPopularity(double popularity){
 		this.popularity = popularity;
@@ -76,7 +65,6 @@ public class PersonRemote {
  	public String toString(){
 		return 
 			"PersonRemote{" +
-			"known_for = '" + knownFor + '\'' + 
 			",popularity = '" + popularity + '\'' + 
 			",name = '" + name + '\'' + 
 			",profile_path = '" + profilePath + '\'' + 

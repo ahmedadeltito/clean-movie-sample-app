@@ -14,10 +14,8 @@ public class TVMapperImpl implements TVMapper {
         TVEntity tvEntity = new TVEntity();
         tvEntity.setId(tvLocal.id);
         tvEntity.setName(tvLocal.name);
-        tvEntity.setGenreIds(tvLocal.genreIds);
         tvEntity.setOriginalLanguage(tvLocal.originalLanguage);
         tvEntity.setOriginalName(tvLocal.originalName);
-        tvEntity.setOriginCountry(tvLocal.originCountry);
         tvEntity.setOverview(tvLocal.overview);
         tvEntity.setPosterPath(tvLocal.posterPath);
         tvEntity.setVoteAverage(tvLocal.voteAverage);
@@ -30,10 +28,8 @@ public class TVMapperImpl implements TVMapper {
         TVEntity tvEntity = new TVEntity();
         tvEntity.setId(tvRemote.getId());
         tvEntity.setName(tvRemote.getName());
-        tvEntity.setGenreIds(tvRemote.getGenreIds());
         tvEntity.setOriginalLanguage(tvRemote.getOriginalLanguage());
         tvEntity.setOriginalName(tvRemote.getOriginalName());
-        tvEntity.setOriginCountry(tvRemote.getOriginCountry());
         tvEntity.setOverview(tvRemote.getOverview());
         tvEntity.setPosterPath(tvRemote.getPosterPath());
         tvEntity.setVoteAverage(tvRemote.getVoteAverage());
@@ -64,10 +60,8 @@ public class TVMapperImpl implements TVMapper {
         TVLocal tvLocal = new TVLocal();
         tvLocal.id = tvEntity.getId();
         tvLocal.name = tvEntity.getName();
-        tvLocal.genreIds = tvEntity.getGenreIds();
         tvLocal.originalLanguage = tvEntity.getOriginalLanguage();
         tvLocal.originalName = tvEntity.getOriginalName();
-        tvLocal.originCountry = tvEntity.getOriginCountry();
         tvLocal.overview = tvEntity.getOverview();
         tvLocal.posterPath = tvEntity.getPosterPath();
         tvLocal.voteAverage = tvEntity.getVoteAverage();

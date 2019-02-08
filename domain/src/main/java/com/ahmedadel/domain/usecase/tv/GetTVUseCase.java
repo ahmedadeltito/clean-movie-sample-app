@@ -1,23 +1,19 @@
 package com.ahmedadel.domain.usecase.tv;
 
-import com.ahmedadel.domain.executor.PostExecutionThread;
-import com.ahmedadel.domain.executor.ThreadExecutor;
 import com.ahmedadel.domain.model.TVEntity;
 import com.ahmedadel.domain.repository.TVRepository;
-import com.ahmedadel.domain.usecase.UseCase;
 
 import io.reactivex.Single;
 
-public abstract class GetTVUseCase extends UseCase<TVEntity, Integer> {
+public class GetTVUseCase {
 
     private TVRepository tvRepository;
 
-    GetTVUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
-        super(threadExecutor, postExecutionThread);
+    public GetTVUseCase(TVRepository tvRepository) {
+        this.tvRepository = tvRepository;
     }
 
-    @Override
-    protected Single<TVEntity> buildUseCaseObservable(Integer tvId) {
+    public Single<TVEntity> getTV(Integer tvId) {
         return tvRepository.getTV(tvId);
     }
 

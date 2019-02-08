@@ -1,19 +1,14 @@
 package com.ahmedadel.data.local.model;
 
-import java.util.List;
-
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "person")
 public class PersonLocal {
 
     @PrimaryKey
     public int id;
-
-    @ColumnInfo(name ="known_for")
-    public List<MovieLocal> knownFor;
 
     @ColumnInfo(name ="popularity")
     public double popularity;

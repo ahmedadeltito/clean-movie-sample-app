@@ -1,6 +1,5 @@
 package com.ahmedadel.data.remote.model;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class MovieRemote {
@@ -22,9 +21,6 @@ public class MovieRemote {
 
 	@SerializedName("title")
 	private String title;
-
-	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
 
 	@SerializedName("poster_path")
 	private String posterPath;
@@ -85,14 +81,6 @@ public class MovieRemote {
 
 	public String getTitle(){
 		return title;
-	}
-
-	public void setGenreIds(List<Integer> genreIds){
-		this.genreIds = genreIds;
-	}
-
-	public List<Integer> getGenreIds(){
-		return genreIds;
 	}
 
 	public void setPosterPath(String posterPath){
@@ -168,8 +156,7 @@ public class MovieRemote {
 			",original_language = '" + originalLanguage + '\'' + 
 			",original_title = '" + originalTitle + '\'' + 
 			",video = '" + video + '\'' + 
-			",title = '" + title + '\'' + 
-			",genre_ids = '" + genreIds + '\'' + 
+			",title = '" + title + '\'' +
 			",poster_path = '" + posterPath + '\'' + 
 			",backdrop_path = '" + backdropPath + '\'' + 
 			",release_date = '" + releaseDate + '\'' + 
