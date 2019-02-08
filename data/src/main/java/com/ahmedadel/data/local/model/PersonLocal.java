@@ -10,16 +10,16 @@ public class PersonLocal {
     @PrimaryKey
     public int id;
 
-    @ColumnInfo(name ="popularity")
+    @ColumnInfo(name = "popularity")
     public double popularity;
 
-    @ColumnInfo(name ="name")
+    @ColumnInfo(name = "name")
     public String name;
 
-    @ColumnInfo(name ="profile_path")
+    @ColumnInfo(name = "profile_path")
     public String profilePath;
 
-    @ColumnInfo(name ="adult")
+    @ColumnInfo(name = "adult")
     public boolean adult;
 
 }

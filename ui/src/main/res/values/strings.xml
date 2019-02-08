@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CleanMovieSampleApp</string>
+    <string name="more">more</string>
+    <string name="movies">Movies</string>
+    <string name="persons">Persons</string>
+    <string name="tvs">Tvs</string>
 </resources>

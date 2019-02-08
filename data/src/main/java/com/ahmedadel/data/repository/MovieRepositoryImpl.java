@@ -9,6 +9,7 @@ import com.ahmedadel.domain.repository.MovieRepository;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class MovieRepositoryImpl implements MovieRepository {
@@ -25,23 +26,19 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
-    public Single<List<MovieEntity>> getMovies(Integer pageNumber) {
+    public Flowable<List<MovieEntity>> getMovies(Integer pageNumber) {
         Single<List<MovieEntity>> localMovies =
                 local.getMovies().map(movieLocals -> mapper.mapLocalListToDomain(movieLocals));
         Single<List<MovieEntity>> remoteMovies =
-                remote.getMovies(pageNumber).map(movieListRemote -> {
-                    List<MovieEntity> movieEntities = mapper.mapRemoteListToDomain(movieListRemote.getMovies());
-                    if (pageNumber == 1)
-                        insertMovies(movieEntities);
-                    return movieEntities;
-                });
+                remote.getMovies(pageNumber).map(
+                        movieListRemote -> mapper.mapRemoteListToDomain(movieListRemote.getMovies()));
         if (pageNumber == 1)
-            return Single.concat(localMovies, remoteMovies).singleOrError();
-        return remoteMovies;
+            return Single.concat(localMovies, remoteMovies);
+        return remoteMovies.toFlowable();
     }
 
     @Override
-    public Single<MovieEntity> getMovie(Integer movieId) {
+    public Flowable<MovieEntity> getMovie(Integer movieId) {
         Single<MovieEntity> localMovie =
                 local.getMovie(movieId).map(movieLocal -> mapper.mapToDomain(movieLocal));
         Single<MovieEntity> remoteMovie =
@@ -50,7 +47,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                     insertMovie(movieEntity);
                     return mapper.mapToDomain(movieRemote);
                 });
-        return Single.concat(localMovie, remoteMovie).singleOrError();
+        return Single.concat(localMovie, remoteMovie);
     }
 
     @Override
@@ -58,8 +55,4 @@ public class MovieRepositoryImpl implements MovieRepository {
         local.insertMovie(mapper.mapToLocal(movieEntity));
     }
 
-    @Override
-    public void insertMovies(List<MovieEntity> movieEntities) {
-        local.insertMovies(mapper.mapEntityListToLocal(movieEntities));
-    }
 }

@@ -2,8 +2,6 @@ package com.ahmedadel.presentation.model;
 
 public class MovieUIModel {
 
-    private int id;
-
     private String title;
 
     private String overview;
@@ -19,14 +17,6 @@ public class MovieUIModel {
     private double voteAverage;
 
     private boolean adult;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

@@ -5,7 +5,7 @@ import com.ahmedadel.domain.repository.PersonRepository;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class GetPersonsUseCase {
 
@@ -15,7 +15,7 @@ public class GetPersonsUseCase {
         this.personRepository = personRepository;
     }
 
-    public Single<List<PersonEntity>> getPersons(Integer pageNumber) {
+    public Flowable<List<PersonEntity>> getPersons(Integer pageNumber) {
         return personRepository.getPersons(pageNumber);
     }
 

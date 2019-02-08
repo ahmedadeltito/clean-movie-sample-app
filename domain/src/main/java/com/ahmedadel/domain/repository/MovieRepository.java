@@ -4,16 +4,14 @@ import com.ahmedadel.domain.model.MovieEntity;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public interface MovieRepository {
 
-    Single<List<MovieEntity>> getMovies(Integer pageNumber);
+    Flowable<List<MovieEntity>> getMovies(Integer pageNumber);
 
-    Single<MovieEntity> getMovie(Integer movieId);
+    Flowable<MovieEntity> getMovie(Integer movieId);
 
     void insertMovie(MovieEntity movieEntity);
-
-    void insertMovies(List<MovieEntity> movieEntities);
 
 }

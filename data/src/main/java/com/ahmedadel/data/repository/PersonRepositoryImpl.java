@@ -9,6 +9,7 @@ import com.ahmedadel.domain.repository.PersonRepository;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class PersonRepositoryImpl implements PersonRepository {
@@ -25,7 +26,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     }
 
     @Override
-    public Single<List<PersonEntity>> getPersons(Integer pageNumber) {
+    public Flowable<List<PersonEntity>> getPersons(Integer pageNumber) {
         Single<List<PersonEntity>> localPersons =
                 local.getPersons().map(personLocals -> mapper.mapLocalListToDomain(personLocals));
         Single<List<PersonEntity>> remotePersons =
@@ -36,12 +37,12 @@ public class PersonRepositoryImpl implements PersonRepository {
                     return personEntities;
                 });
         if (pageNumber == 1)
-            return Single.concat(localPersons, remotePersons).singleOrError();
-        return remotePersons;
+            return Single.concat(localPersons, remotePersons);
+        return remotePersons.toFlowable();
     }
 
     @Override
-    public Single<PersonEntity> getPerson(Integer personId) {
+    public Flowable<PersonEntity> getPerson(Integer personId) {
         Single<PersonEntity> localPerson =
                 local.getPerson(personId).map(personLocal -> {
                     PersonEntity personEntity = mapper.mapToDomain(personLocal);
@@ -50,7 +51,7 @@ public class PersonRepositoryImpl implements PersonRepository {
                 });
         Single<PersonEntity> remotePerson =
                 remote.getPerson(personId).map(personRemote -> mapper.mapToDomain(personRemote));
-        return Single.concat(localPerson, remotePerson).singleOrError();
+        return Single.concat(localPerson, remotePerson);
     }
 
     @Override

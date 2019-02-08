@@ -1,15 +1,16 @@
 package com.ahmedadel.presentation.viewmodel;
 
-
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModel;
 import android.support.v4.util.Preconditions;
 
+import org.reactivestreams.Subscription;
+
+import io.reactivex.Flowable;
 import io.reactivex.Scheduler;
-import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.functions.Consumer;
 
 public class BaseViewModel extends ViewModel {
 
@@ -24,12 +25,14 @@ public class BaseViewModel extends ViewModel {
     }
 
     @SuppressLint("RestrictedApi")
-    public <T> void execute(DisposableSingleObserver<T> observer, Single<T> useCase) {
-        Preconditions.checkNotNull(observer);
-        final Single<T> observable = useCase
+    protected <T> void execute(Consumer<Subscription> loadingConsumer, Consumer<T> successConsumer, Consumer<Throwable> throwableConsumer, Flowable<T> useCase) {
+        Preconditions.checkNotNull(successConsumer);
+        Preconditions.checkNotNull(throwableConsumer);
+        final Flowable<T> observable = useCase
+                .doOnSubscribe(loadingConsumer)
                 .subscribeOn(subscribeOn)
                 .observeOn(observeOn);
-        addDisposable(observable.subscribeWith(observer));
+        addDisposable(observable.subscribe(successConsumer, throwableConsumer));
     }
 
     /**

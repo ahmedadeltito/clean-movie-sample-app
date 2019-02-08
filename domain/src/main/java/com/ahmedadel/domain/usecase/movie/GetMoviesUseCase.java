@@ -5,7 +5,7 @@ import com.ahmedadel.domain.repository.MovieRepository;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class GetMoviesUseCase {
 
@@ -15,7 +15,7 @@ public class GetMoviesUseCase {
         this.movieRepository = movieRepository;
     }
 
-    public Single<List<MovieEntity>> getMovies(Integer pageNumber) {
+    public Flowable<List<MovieEntity>> getMovies(Integer pageNumber) {
         return movieRepository.getMovies(pageNumber);
     }
 

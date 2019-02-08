@@ -4,13 +4,13 @@ import com.ahmedadel.domain.model.TVEntity;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public interface TVRepository {
 
-    Single<List<TVEntity>> getTVs(Integer pageNumber);
+    Flowable<List<TVEntity>> getTVs(Integer pageNumber);
 
-    Single<TVEntity> getTV(Integer tvId);
+    Flowable<TVEntity> getTV(Integer tvId);
 
     void insertTV(TVEntity tvEntity);
 

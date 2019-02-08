@@ -2,8 +2,6 @@ package com.ahmedadel.domain.model;
 
 public class MovieEntity {
 
-    private int id;
-
     private String overview;
 
     private String originalLanguage;
@@ -21,14 +19,6 @@ public class MovieEntity {
     private boolean adult;
 
     private int voteCount;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getOverview() {
         return overview;

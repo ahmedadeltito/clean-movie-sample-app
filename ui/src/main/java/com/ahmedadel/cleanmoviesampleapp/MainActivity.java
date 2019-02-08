@@ -1,16 +1,18 @@
 package com.ahmedadel.cleanmoviesampleapp;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.ahmedadel.presentation.PresentationInjection;
-import com.ahmedadel.presentation.model.viewstate.movie.MovieListViewState;
-import com.ahmedadel.presentation.viewmodel.home.HomeViewModel;
+import com.ahmedadel.cleanmoviesampleapp.home.HomeActivity;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,18 +21,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HomeViewModel homeViewModel = ViewModelProviders.of(this,
-                PresentationInjection.provideHomeViewModelFactory(this)).get(HomeViewModel.class);
+        Observable.timer(3, TimeUnit.SECONDS)
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-        homeViewModel.getMovies().observe(this, new Observer<MovieListViewState>() {
-            @Override
-            public void onChanged(@Nullable MovieListViewState movieListViewState) {
-                MovieListViewState movieListViewState1 = movieListViewState;
-                Log.d("MovieListViewState", movieListViewState.toString());
-            }
-        });
+                    }
 
-        homeViewModel.callMovies();
+                    @Override
+                    public void onNext(Long aLong) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    }
+                });
 
     }
 }

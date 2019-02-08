@@ -3,9 +3,6 @@ package com.ahmedadel.presentation.viewmodel.home;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
-import com.ahmedadel.domain.model.MovieEntity;
-import com.ahmedadel.domain.model.PersonEntity;
-import com.ahmedadel.domain.model.TVEntity;
 import com.ahmedadel.domain.usecase.movie.GetMoviesUseCase;
 import com.ahmedadel.domain.usecase.person.GetPersonsUseCase;
 import com.ahmedadel.domain.usecase.tv.GetTVsUseCase;
@@ -20,9 +17,6 @@ import com.ahmedadel.presentation.model.viewstate.movie.MovieListViewState;
 import com.ahmedadel.presentation.model.viewstate.person.PersonListViewState;
 import com.ahmedadel.presentation.model.viewstate.tv.TVListViewState;
 import com.ahmedadel.presentation.viewmodel.BaseViewModel;
-import com.ahmedadel.presentation.viewmodel.DefaultSingle;
-
-import java.util.List;
 
 import io.reactivex.Scheduler;
 
@@ -47,15 +41,64 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     public void callMovies() {
-        execute(new GetMoviesSingle(), getMoviesUseCase.getMovies(1));
+        MovieListViewState movieListViewState = new MovieListViewState();
+        execute(
+                subscription -> {
+                    movieListViewState.setNetworkState(NetworkState.LOADING);
+                    movieViewStateLiveData.postValue(movieListViewState);
+                },
+                movieEntities -> {
+                    MovieMapper movieMapper = new MovieMapperImpl();
+                    movieListViewState.setNetworkState(NetworkState.LOADED);
+                    movieListViewState.setMovies(movieMapper.mapDomainListToUI(movieEntities));
+                    movieViewStateLiveData.postValue(movieListViewState);
+                },
+                throwable -> {
+                    movieListViewState.setNetworkState(NetworkState.error(throwable.getMessage()));
+                    movieViewStateLiveData.postValue(movieListViewState);
+                },
+                getMoviesUseCase.getMovies(1)
+        );
     }
 
     public void callPersons() {
-        execute(new GetPersonsSingle(), getPersonsUseCase.getPersons(1));
+        PersonListViewState personListViewState = new PersonListViewState();
+        execute(
+                subscription -> {
+                    personListViewState.setNetworkState(NetworkState.LOADING);
+                    personLViewStateLiveData.postValue(personListViewState);
+                },
+                personEntities -> {
+                    PersonMapper personMapper = new PersonMapperImpl();
+                    personListViewState.setNetworkState(NetworkState.LOADED);
+                    personListViewState.setPersons(personMapper.mapDomainListToUI(personEntities));
+                    personLViewStateLiveData.postValue(personListViewState);
+                },
+                throwable -> {
+                    personListViewState.setNetworkState(NetworkState.error(throwable.getMessage()));
+                    personLViewStateLiveData.postValue(personListViewState);
+                },
+                getPersonsUseCase.getPersons(1));
     }
 
     public void callTVs() {
-        execute(new GetTVsSingle(), getTVsUseCase.getTVs(1));
+        TVListViewState tvListViewState = new TVListViewState();
+        execute(
+                subscription -> {
+                    tvListViewState.setNetworkState(NetworkState.LOADING);
+                    tvListViewStateLiveData.postValue(tvListViewState);
+                },
+                tvEntities -> {
+                    TVMapper tvMapper = new TVMapperImpl();
+                    tvListViewState.setNetworkState(NetworkState.LOADED);
+                    tvListViewState.setTvs(tvMapper.mapDomainListToUI(tvEntities));
+                    tvListViewStateLiveData.postValue(tvListViewState);
+                },
+                throwable -> {
+                    tvListViewState.setNetworkState(NetworkState.error(throwable.getMessage()));
+                    tvListViewStateLiveData.postValue(tvListViewState);
+                },
+                getTVsUseCase.getTVs(1));
     }
 
     public LiveData<MovieListViewState> getMovies() {
@@ -68,80 +111,5 @@ public class HomeViewModel extends BaseViewModel {
 
     public LiveData<TVListViewState> getTVs() {
         return tvListViewStateLiveData;
-    }
-
-    class GetMoviesSingle extends DefaultSingle<List<MovieEntity>> {
-
-        MovieListViewState movieListViewState = new MovieListViewState();
-
-        @Override
-        protected void onStart() {
-            movieListViewState.setNetworkState(NetworkState.LOADING);
-            movieViewStateLiveData.postValue(movieListViewState);
-        }
-
-        @Override
-        public void onSuccess(List<MovieEntity> movieEntities) {
-            MovieMapper movieMapper = new MovieMapperImpl();
-            movieListViewState.setNetworkState(NetworkState.LOADED);
-            movieListViewState.setMovies(movieMapper.mapDomainListToUI(movieEntities));
-            movieViewStateLiveData.postValue(movieListViewState);
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            movieListViewState.setNetworkState(NetworkState.error(e.getMessage()));
-            movieViewStateLiveData.postValue(movieListViewState);
-        }
-    }
-
-    class GetPersonsSingle extends DefaultSingle<List<PersonEntity>> {
-
-        PersonListViewState personListViewState = new PersonListViewState();
-
-        @Override
-        protected void onStart() {
-            personListViewState.setNetworkState(NetworkState.LOADING);
-            personLViewStateLiveData.postValue(personListViewState);
-        }
-
-        @Override
-        public void onSuccess(List<PersonEntity> personEntities) {
-            PersonMapper personMapper = new PersonMapperImpl();
-            personListViewState.setNetworkState(NetworkState.LOADED);
-            personListViewState.setPersons(personMapper.mapDomainListToUI(personEntities));
-            personLViewStateLiveData.postValue(personListViewState);
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            personListViewState.setNetworkState(NetworkState.error(e.getMessage()));
-            personLViewStateLiveData.postValue(personListViewState);
-        }
-    }
-
-    class GetTVsSingle extends DefaultSingle<List<TVEntity>> {
-
-        TVListViewState tvListViewState = new TVListViewState();
-
-        @Override
-        protected void onStart() {
-            tvListViewState.setNetworkState(NetworkState.LOADING);
-            tvListViewStateLiveData.postValue(tvListViewState);
-        }
-
-        @Override
-        public void onSuccess(List<TVEntity> tvEntities) {
-            TVMapper tvMapper = new TVMapperImpl();
-            tvListViewState.setNetworkState(NetworkState.LOADED);
-            tvListViewState.setTvs(tvMapper.mapDomainListToUI(tvEntities));
-            tvListViewStateLiveData.postValue(tvListViewState);
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            tvListViewState.setNetworkState(NetworkState.error(e.getMessage()));
-            tvListViewStateLiveData.postValue(tvListViewState);
-        }
     }
 }

@@ -18,6 +18,4 @@ public interface MovieMapper {
 
     MovieLocal mapToLocal(MovieEntity movieEntity);
 
-    List<MovieLocal> mapEntityListToLocal(List<MovieEntity> movieEntities);
-
 }

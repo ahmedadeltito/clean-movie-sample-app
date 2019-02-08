@@ -3,7 +3,7 @@ package com.ahmedadel.domain.usecase.movie;
 import com.ahmedadel.domain.model.MovieEntity;
 import com.ahmedadel.domain.repository.MovieRepository;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class GetMovieUseCase {
 
@@ -13,7 +13,7 @@ public class GetMovieUseCase {
         this.movieRepository = movieRepository;
     }
 
-    public Single<MovieEntity> getMovie(Integer movieId) {
+    public Flowable<MovieEntity> getMovie(Integer movieId) {
         return movieRepository.getMovie(movieId);
     }
 

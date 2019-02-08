@@ -5,7 +5,7 @@ import com.ahmedadel.domain.repository.TVRepository;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class GetTVsUseCase {
 
@@ -15,7 +15,7 @@ public class GetTVsUseCase {
         this.tvRepository = tvRepository;
     }
 
-    public Single<List<TVEntity>> getTVs(Integer pageNumber) {
+    public Flowable<List<TVEntity>> getTVs(Integer pageNumber) {
         return tvRepository.getTVs(pageNumber);
     }
 

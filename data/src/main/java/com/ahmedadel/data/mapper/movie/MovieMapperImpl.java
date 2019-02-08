@@ -12,7 +12,6 @@ public class MovieMapperImpl implements MovieMapper {
     @Override
     public MovieEntity mapToDomain(MovieLocal movieLocal) {
         MovieEntity movieEntity = new MovieEntity();
-        movieEntity.setId(movieLocal.id);
         movieEntity.setAdult(movieLocal.adult);
         movieEntity.setOriginalLanguage(movieLocal.originalLanguage);
         movieEntity.setOriginalTitle(movieLocal.originalTitle);
@@ -28,7 +27,6 @@ public class MovieMapperImpl implements MovieMapper {
     @Override
     public MovieEntity mapToDomain(MovieRemote movieRemote) {
         MovieEntity movieEntity = new MovieEntity();
-        movieEntity.setId(movieRemote.getId());
         movieEntity.setAdult(movieRemote.isAdult());
         movieEntity.setOriginalLanguage(movieRemote.getOriginalLanguage());
         movieEntity.setOriginalTitle(movieRemote.getOriginalTitle());
@@ -62,7 +60,6 @@ public class MovieMapperImpl implements MovieMapper {
     @Override
     public MovieLocal mapToLocal(MovieEntity movieEntity) {
         MovieLocal movieLocal = new MovieLocal();
-        movieLocal.id = movieEntity.getId();
         movieLocal.adult = movieEntity.isAdult();
         movieLocal.originalLanguage = movieEntity.getOriginalLanguage();
         movieLocal.originalTitle = movieEntity.getOriginalTitle();
@@ -75,12 +72,4 @@ public class MovieMapperImpl implements MovieMapper {
         return null;
     }
 
-    @Override
-    public List<MovieLocal> mapEntityListToLocal(List<MovieEntity> movieEntities) {
-        List<MovieLocal> movieLocals = new ArrayList<>();
-        for (int i = 0; i < movieEntities.size(); i++) {
-            movieLocals.add(mapToLocal(movieEntities.get(i)));
-        }
-        return movieLocals;
-    }
 }

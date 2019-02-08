@@ -4,13 +4,13 @@ import com.ahmedadel.domain.model.PersonEntity;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public interface PersonRepository {
 
-    Single<List<PersonEntity>> getPersons(Integer pageNumber);
+    Flowable<List<PersonEntity>> getPersons(Integer pageNumber);
 
-    Single<PersonEntity> getPerson(Integer personId);
+    Flowable<PersonEntity> getPerson(Integer personId);
 
     void insertPerson(PersonEntity personEntity);
 

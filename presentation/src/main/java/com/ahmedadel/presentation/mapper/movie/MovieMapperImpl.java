@@ -11,7 +11,6 @@ public class MovieMapperImpl implements MovieMapper {
     @Override
     public MovieUIModel mapToUI(MovieEntity movieEntity) {
         MovieUIModel movieUIModel = new MovieUIModel();
-        movieUIModel.setId(movieEntity.getId());
         movieUIModel.setTitle(movieEntity.getTitle());
         movieUIModel.setAdult(movieEntity.isAdult());
         movieUIModel.setOriginalTitle(movieEntity.getOriginalTitle());

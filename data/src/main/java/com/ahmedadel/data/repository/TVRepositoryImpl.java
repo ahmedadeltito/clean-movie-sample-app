@@ -9,6 +9,7 @@ import com.ahmedadel.domain.repository.TVRepository;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class TVRepositoryImpl implements TVRepository {
@@ -25,7 +26,7 @@ public class TVRepositoryImpl implements TVRepository {
     }
 
     @Override
-    public Single<List<TVEntity>> getTVs(Integer pageNumber) {
+    public Flowable<List<TVEntity>> getTVs(Integer pageNumber) {
         Single<List<TVEntity>> localTVs =
                 local.getTVs().map(tvLocals -> mapper.mapLocalListToDomain(tvLocals));
         Single<List<TVEntity>> remoteTVs =
@@ -36,12 +37,12 @@ public class TVRepositoryImpl implements TVRepository {
                     return tvEntities;
                 });
         if (pageNumber == 1)
-            return Single.concat(localTVs, remoteTVs).singleOrError();
-        return remoteTVs;
+            return Single.concat(localTVs, remoteTVs);
+        return remoteTVs.toFlowable();
     }
 
     @Override
-    public Single<TVEntity> getTV(Integer tvId) {
+    public Flowable<TVEntity> getTV(Integer tvId) {
         Single<TVEntity> localTV =
                 local.getTV(tvId).map(tvLocal -> mapper.mapToDomain(tvLocal));
         Single<TVEntity> remoteTV =
@@ -50,7 +51,7 @@ public class TVRepositoryImpl implements TVRepository {
                     insertTV(tvEntity);
                     return mapper.mapToDomain(tvRemote);
                 });
-        return Single.concat(localTV, remoteTV).singleOrError();
+        return Single.concat(localTV, remoteTV);
     }
 
     @Override

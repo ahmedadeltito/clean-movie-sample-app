@@ -13,31 +13,31 @@ public class TVLocal {
     @ColumnInfo(name = "first_air_date")
     public String firstAirDate;
 
-    @ColumnInfo(name ="overview")
+    @ColumnInfo(name = "overview")
     public String overview;
 
-    @ColumnInfo(name ="original_language")
+    @ColumnInfo(name = "original_language")
     public String originalLanguage;
 
-    @ColumnInfo(name ="poster_path")
+    @ColumnInfo(name = "poster_path")
     public String posterPath;
 
-    @ColumnInfo(name ="backdrop_path")
+    @ColumnInfo(name = "backdrop_path")
     public String backdropPath;
 
-    @ColumnInfo(name ="popularity")
+    @ColumnInfo(name = "popularity")
     public double popularity;
 
-    @ColumnInfo(name ="vote_average")
+    @ColumnInfo(name = "vote_average")
     public double voteAverage;
 
-    @ColumnInfo(name ="original_name")
+    @ColumnInfo(name = "original_name")
     public String originalName;
 
-    @ColumnInfo(name ="name")
+    @ColumnInfo(name = "name")
     public String name;
 
-    @ColumnInfo(name ="vote_count")
+    @ColumnInfo(name = "vote_count")
     public int voteCount;
 
 }
