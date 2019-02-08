@@ -5,7 +5,6 @@ import com.ahmedadel.data.local.model.MovieLocal;
 import java.util.List;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -23,10 +22,7 @@ public interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMovie(MovieLocal movie);
 
-    @Delete
-    void delete(MovieLocal movie);
-
-    @Query("DELETE FROM movie")
-    Integer deleteAll();
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertMovies(List<MovieLocal> movie);
 
 }

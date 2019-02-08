@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class TVRemote {
 
+	@SerializedName("id")
+	private int id;
+
 	@SerializedName("first_air_date")
 	private String firstAirDate;
 
@@ -37,9 +40,6 @@ public class TVRemote {
 
 	@SerializedName("name")
 	private String name;
-
-	@SerializedName("id")
-	private int id;
 
 	@SerializedName("vote_count")
 	private int voteCount;

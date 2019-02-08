@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class MovieRemote {
 
+	@SerializedName("id")
+	private int id;
+
 	@SerializedName("overview")
 	private String overview;
 
@@ -37,9 +40,6 @@ public class MovieRemote {
 
 	@SerializedName("vote_average")
 	private double voteAverage;
-
-	@SerializedName("id")
-	private int id;
 
 	@SerializedName("adult")
 	private boolean adult;

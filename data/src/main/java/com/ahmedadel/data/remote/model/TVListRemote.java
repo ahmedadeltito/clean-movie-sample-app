@@ -1,63 +1,64 @@
 package com.ahmedadel.data.remote.model;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class TVListRemote {
 
-	@SerializedName("page")
-	private int page;
+    @SerializedName("page")
+    private int page;
 
-	@SerializedName("total_pages")
-	private int totalPages;
+    @SerializedName("total_pages")
+    private int totalPages;
 
-	@SerializedName("results")
-	private List<TVRemote> results;
+    @SerializedName("results")
+    private List<TVRemote> tvs;
 
-	@SerializedName("total_results")
-	private int totalResults;
+    @SerializedName("total_results")
+    private int totalResults;
 
-	public void setPage(int page){
-		this.page = page;
-	}
+    public void setPage(int page) {
+        this.page = page;
+    }
 
-	public int getPage(){
-		return page;
-	}
+    public int getPage() {
+        return page;
+    }
 
-	public void setTotalPages(int totalPages){
-		this.totalPages = totalPages;
-	}
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
+    }
 
-	public int getTotalPages(){
-		return totalPages;
-	}
+    public int getTotalPages() {
+        return totalPages;
+    }
 
-	public void setResults(List<TVRemote> results){
-		this.results = results;
-	}
+    public void setTVs(List<TVRemote> tvs) {
+        this.tvs = tvs;
+    }
 
-	public List<TVRemote> getResults(){
-		return results;
-	}
+    public List<TVRemote> getTVs() {
+        return tvs;
+    }
 
-	public void setTotalResults(int totalResults){
-		this.totalResults = totalResults;
-	}
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
+    }
 
-	public int getTotalResults(){
-		return totalResults;
-	}
+    public int getTotalResults() {
+        return totalResults;
+    }
 
-	@SuppressWarnings("NullableProblems")
-	@Override
- 	public String toString(){
-		return 
-			"TVListRemote{" +
-			"page = '" + page + '\'' + 
-			",total_pages = '" + totalPages + '\'' + 
-			",results = '" + results + '\'' + 
-			",total_results = '" + totalResults + '\'' + 
-			"}";
-		}
+    @SuppressWarnings("NullableProblems")
+    @Override
+    public String toString() {
+        return
+                "TVListRemote{" +
+                        "page = '" + page + '\'' +
+                        ",total_pages = '" + totalPages + '\'' +
+                        ",TVs = '" + tvs + '\'' +
+                        ",total_results = '" + totalResults + '\'' +
+                        "}";
+    }
 }

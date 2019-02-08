@@ -4,12 +4,16 @@ import java.util.List;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "person")
 public class PersonLocal {
 
+    @PrimaryKey
+    public int id;
+
     @ColumnInfo(name ="known_for")
-    public List<KnownForLocal> knownFor;
+    public List<MovieLocal> knownFor;
 
     @ColumnInfo(name ="popularity")
     public double popularity;
@@ -19,9 +23,6 @@ public class PersonLocal {
 
     @ColumnInfo(name ="profile_path")
     public String profilePath;
-
-    @ColumnInfo(name ="id")
-    public int id;
 
     @ColumnInfo(name ="adult")
     public boolean adult;

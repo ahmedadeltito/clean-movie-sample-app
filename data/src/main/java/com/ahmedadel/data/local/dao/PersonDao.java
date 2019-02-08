@@ -19,12 +19,9 @@ public interface PersonDao {
     Single<PersonLocal> getPerson(Integer personId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertMovie(PersonLocal person);
+    void insertPerson(PersonLocal person);
 
-    @Delete
-    void delete(PersonLocal person);
-
-    @Query("DELETE FROM person")
-    Integer deleteAll();
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertPersons(List<PersonLocal> persons);
 
 }

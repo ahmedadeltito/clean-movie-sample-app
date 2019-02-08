@@ -12,7 +12,7 @@ public class MovieListRemote {
 	private int totalPages;
 
 	@SerializedName("results")
-	private List<MovieRemote> results;
+	private List<MovieRemote> movies;
 
 	@SerializedName("total_results")
 	private int totalResults;
@@ -33,12 +33,12 @@ public class MovieListRemote {
 		return totalPages;
 	}
 
-	public void setResults(List<MovieRemote> results){
-		this.results = results;
+	public void setMovies(List<MovieRemote> movies){
+		this.movies = movies;
 	}
 
-	public List<MovieRemote> getResults(){
-		return results;
+	public List<MovieRemote> getMovies(){
+		return movies;
 	}
 
 	public void setTotalResults(int totalResults){
@@ -56,7 +56,7 @@ public class MovieListRemote {
 			"MovieListRemote{" +
 			"page = '" + page + '\'' + 
 			",total_pages = '" + totalPages + '\'' + 
-			",results = '" + results + '\'' + 
+			",results = '" + movies + '\'' +
 			",total_results = '" + totalResults + '\'' + 
 			"}";
 		}

@@ -17,9 +17,9 @@ public class APIClient {
     private static APIClient apiClient;
     private SettingsAPI settings;
 
-    public static APIClient getInstance(SettingsAPI settings) {
+    private static APIClient getInstance() {
         if (apiClient == null)
-            apiClient = new APIClient(settings);
+            apiClient = new APIClient(new SettingsAPI());
         return apiClient;
     }
 
@@ -46,14 +46,11 @@ public class APIClient {
     }
 
     public static MovieAppAPI getMovieAppAPI() {
-        if (apiClient == null)
-            throw new IllegalArgumentException("APIClient is null, " +
-                    "you should call getMovieAppAPI() after calling getInstance()");
         return new Retrofit.Builder()
-                .baseUrl(apiClient.settings.getBaseURL())
+                .baseUrl(getInstance().settings.getBaseURL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(apiClient.getHttpClient())
+                .client(getInstance().getHttpClient())
                 .build()
                 .create(MovieAppAPI.class);
     }

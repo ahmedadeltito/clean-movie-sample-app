@@ -5,8 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class PersonRemote {
 
+	@SerializedName("id")
+	private int id;
+
 	@SerializedName("known_for")
-	private List<KnownForRemote> knownFor;
+	private List<MovieRemote> knownFor;
 
 	@SerializedName("popularity")
 	private double popularity;
@@ -17,17 +20,14 @@ public class PersonRemote {
 	@SerializedName("profile_path")
 	private String profilePath;
 
-	@SerializedName("id")
-	private int id;
-
 	@SerializedName("adult")
 	private boolean adult;
 
-	public void setKnownFor(List<KnownForRemote> knownFor){
+	public void setKnownFor(List<MovieRemote> knownFor){
 		this.knownFor = knownFor;
 	}
 
-	public List<KnownForRemote> getKnownFor(){
+	public List<MovieRemote> getKnownFor(){
 		return knownFor;
 	}
 

@@ -12,7 +12,7 @@ public class PersonListRemote {
 	private int totalPages;
 
 	@SerializedName("results")
-	private List<PersonRemote> results;
+	private List<PersonRemote> persons;
 
 	@SerializedName("total_results")
 	private int totalResults;
@@ -33,12 +33,12 @@ public class PersonListRemote {
 		return totalPages;
 	}
 
-	public void setResults(List<PersonRemote> results){
-		this.results = results;
+	public void setPersons(List<PersonRemote> persons){
+		this.persons = persons;
 	}
 
-	public List<PersonRemote> getResults(){
-		return results;
+	public List<PersonRemote> getPersons(){
+		return persons;
 	}
 
 	public void setTotalResults(int totalResults){
@@ -56,7 +56,7 @@ public class PersonListRemote {
 			"PersonListRemote{" +
 			"page = '" + page + '\'' + 
 			",total_pages = '" + totalPages + '\'' + 
-			",results = '" + results + '\'' + 
+			",persons = '" + persons + '\'' +
 			",total_results = '" + totalResults + '\'' + 
 			"}";
 		}

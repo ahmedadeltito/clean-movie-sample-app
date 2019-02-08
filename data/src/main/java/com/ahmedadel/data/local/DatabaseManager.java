@@ -16,16 +16,20 @@ import androidx.room.RoomDatabase;
 @Database(entities = {MovieLocal.class, PersonLocal.class, TVLocal.class}, version = 1, exportSchema = false)
 public abstract class DatabaseManager extends RoomDatabase {
 
+    private static DatabaseManager databaseManager;
+
     public abstract MovieDao movieDao();
 
     public abstract PersonDao personDao();
 
     public abstract TVDao tvDao();
 
-    public static DatabaseManager getInstance(Context context) {
-        return Room.databaseBuilder(
-                context.getApplicationContext(),
-                DatabaseManager.class, "movie-app").build();
+    public static synchronized DatabaseManager getInstance(Context context) {
+        if (databaseManager == null)
+            databaseManager = Room.databaseBuilder(
+                    context.getApplicationContext(),
+                    DatabaseManager.class, "movie-app").build();
+        return databaseManager;
     }
 
 }

@@ -21,12 +21,9 @@ public interface TVDao {
     Single<TVLocal> getTV(Integer tvId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void inserTV(TVLocal tv);
+    void insertTV(TVLocal tv);
 
-    @Delete
-    void delete(TVLocal tv);
-
-    @Query("DELETE FROM tv")
-    Integer deleteAll();
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertTVs(List<TVLocal> tvs);
 
 }
